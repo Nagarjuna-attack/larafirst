@@ -14,5 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $data = [
+        'aktif'  => 'active'
+        ];
+
+    return view('beranda',$data);
+});
+
+Route::get('/kontak', function () {
+
+    $data = [
+        'aktif'  => 'active'
+        ];
+    return view('kontak');
+});
+
+Route::get('/tentang', function () {
+
+    $data = [
+        'aktif'  => 'active'
+        ];
+    return view('tentang');
 });
