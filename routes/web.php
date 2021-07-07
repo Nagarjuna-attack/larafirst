@@ -15,25 +15,50 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $data = [
-        'aktif'  => 'active'
-        ];
+    $blog = [
 
-    return view('beranda',$data);
+        [
+          'judul' => 'Post pertama',
+          'url' => 'post-pertama',
+          'deskripsi' => 'Ini Adalah Post Pertama',
+          'isi' => 'sdfasdf asdfa dfasdf asdfasd fasdf asdf asdf asdf asdf asdf asdf asd fsdf asdfasd fasd fasd fasdf sd asdf adf asdf ' 
+        ],
+        [
+          'judul' => 'Post Kedua',
+          'url' => 'post-kedua',
+          'deskripsi' => 'Ini Adalah Post Kedua',
+          'isi' => 'sdfasdf asdfa dfasdf asdfasd fasdf asdf asdf asdf asdf asdf asdf asd fsdf asdfasd fasd fasd fasdf sd asdf adf asdf '
+        ]
+    ];
+
+    return view('beranda',[
+        
+        'aktif'  => 'active',
+        'title' => 'Beranda',
+        'post' => $blog
+    ]);
 });
 
 Route::get('/kontak', function () {
 
-    $data = [
-        'aktif'  => 'active'
-        ];
-    return view('kontak');
+    return view('kontak',[
+
+        'aktif'  => 'active',
+        'title' => 'Kontak'
+    ]);
 });
 
 Route::get('/tentang', function () {
 
-    $data = [
-        'aktif'  => 'active'
-        ];
-    return view('tentang');
+    return view('tentang',[
+        'aktif'  => 'active',
+        'title' => 'Tentang'
+    ]);
+});
+
+Route::get('/read/{slug}', function($slug){
+
+    return view('read',[
+        'title' => 'Single Post',
+    ]);
 });
