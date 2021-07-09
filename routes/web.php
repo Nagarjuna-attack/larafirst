@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $blog = [
-
-        [
-          'judul' => 'Post pertama',
-          'url' => 'post-pertama',
-          'deskripsi' => 'Ini Adalah Post Pertama',
-          'isi' => 'sdfasdf asdfa dfasdf asdfasd fasdf asdf asdf asdf asdf asdf asdf asd fsdf asdfasd fasd fasd fasdf sd asdf adf asdf ' 
-        ],
-        [
-          'judul' => 'Post Kedua',
-          'url' => 'post-kedua',
-          'deskripsi' => 'Ini Adalah Post Kedua',
-          'isi' => 'sdfasdf asdfa dfasdf asdfasd fasdf asdf asdf asdf asdf asdf asdf asd fsdf asdfasd fasd fasd fasdf sd asdf adf asdf '
-        ]
-    ];
-
     return view('beranda',[
         
         'aktif'  => 'active',
         'title' => 'Beranda',
-        'post' => $blog
+        'post' => Post::semua()
     ]);
 });
 
@@ -56,9 +41,10 @@ Route::get('/tentang', function () {
     ]);
 });
 
-Route::get('/read/{slug}', function($slug){
+Route::get('/read/{slug}', function($url){
 
     return view('read',[
         'title' => 'Single Post',
+        'baca'  => Post::find($url)
     ]);
 });
