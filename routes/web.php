@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +15,8 @@ use App\Models\Post;
 |
 */
 
-Route::get('/', function () {
-
-    return view('beranda',[
-        
-        'aktif'  => 'active',
-        'title' => 'Beranda',
-        'post' => Post::semua()
-    ]);
-});
+Route::get('/',[PostController::class,'index']);
+Route::get('/read/{slug}',[PostController::class,'detail']);
 
 Route::get('/kontak', function () {
 
@@ -41,10 +35,4 @@ Route::get('/tentang', function () {
     ]);
 });
 
-Route::get('/read/{slug}', function($url){
 
-    return view('read',[
-        'title' => 'Single Post',
-        'baca'  => Post::find($url)
-    ]);
-});
