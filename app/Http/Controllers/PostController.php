@@ -12,7 +12,7 @@ class PostController extends Controller
         return view('beranda',[ 
         'aktif'  => 'active',
         'title' => 'Beranda',
-        'post' => Post::semua()
+        'posts' => Post::all()
         ]);
     }
 
