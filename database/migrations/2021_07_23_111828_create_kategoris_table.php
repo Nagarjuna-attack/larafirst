@@ -30,4 +30,5 @@ class CreateKategorisTable extends Migration
     {
         Schema::dropIfExists('kategoris');
     }
+
 }
