@@ -16,7 +16,7 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/',[PostController::class,'index']);
-Route::get('/read/{slug}',[PostController::class,'detail']);
+Route::get('/read/{post:slug}',[PostController::class,'detail']);
 
 Route::get('/kontak', function () {
 

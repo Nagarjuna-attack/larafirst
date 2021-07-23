@@ -4,7 +4,7 @@
 	<h1>Beranda</h1>
 	<article>
 		@foreach($posts as $list)
-		<h2><a href="/read/{{ $list->id }}">{{ $list->title }}</a></h2>
+		<h2><a href="/read/{{ $list->slug }}">{{ $list->title }}</a></h2>
 		<h5>{{ $list->excerpt }}</h5>
 		@endforeach
 	</article>

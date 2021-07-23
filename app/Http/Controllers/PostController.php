@@ -16,11 +16,12 @@ class PostController extends Controller
         ]);
     }
 
-    public function detail($url)
+    public function detail(Post $post)
     {
         return view('read',[
         'title' => 'Single Post',
-        'baca'  => Post::find($url)
+        'baca'  => $post
         ]);
+
     }
 }
