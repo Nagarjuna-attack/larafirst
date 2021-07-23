@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
-use App\Models\Post
+use App\Models\Post;
 
 class KategoriController extends Controller
 {
-    public function index(Kategori $kategori)
+
+    public function index()
+    {
+        return view('kategoris',[
+            
+            'aktif'  => 'active',
+            'title' => 'Kategori',
+            'kategoris' => Kategori::all()
+        ]);
+
+    }
+
+
+    public function list(Kategori $kategori)
     {
         return view('kategori',[
 

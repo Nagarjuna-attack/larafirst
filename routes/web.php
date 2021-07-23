@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Kategori;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +19,8 @@ use App\Http\Controllers\PostController;
 
 Route::get('/',[PostController::class,'index']);
 Route::get('/read/{post:slug}',[PostController::class,'detail']);
-Route::get('/kategori/{kategori:slug}',function(Kategori $kategori){
-
-    return view('kategori',[
-
-            'title' => $kategori->name,
-            'posts' => $kategori->post,
-            'ktgori'=> $kategori->name
-        ]);
-});
+Route::get('/kategori/{kategori:slug}',[KategoriController::class,'list']);
+Route::get('/kategori',[KategoriController::class,'index']);
 
 Route::get('/kontak', function () {
 

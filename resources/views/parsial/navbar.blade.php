@@ -10,6 +10,9 @@
 			          <a class="nav-link {{ ($title==="Beranda") ? 'active' : '' }}" aria-current="page" href="/">Beranda</a>
 			        </li>
 			        <li class="nav-item">
+			          <a class="nav-link {{ ($title==="Kategori") ? 'active' : '' }}" href="/kategori">Kategori</a>
+			        </li>
+			        <li class="nav-item">
 			          <a class="nav-link {{ ($title==="Kontak") ? 'active' : '' }}" href="/kontak">Kontak</a>
 			        </li>
 			        <li class="nav-item">
