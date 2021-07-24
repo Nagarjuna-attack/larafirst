@@ -24,5 +24,11 @@ Route::get('/kategori/{kategori:slug}',[KategoriController::class,'list']);
 Route::get('/kategori',[KategoriController::class,'index']);
 Route::get('/kontak', [HomeController::class,'kontak']);
 Route::get('/tentang', [HomeController::class,'tentang']);
+Route::get('/ipku',function(){
+
+	$ipp = geoip()->getLocation('182.1.221.95');
+
+	return $ipp->toArray();
+});
 
 
