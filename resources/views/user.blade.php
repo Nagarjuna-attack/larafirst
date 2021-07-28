@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 	@section('container')
-	<h1>By {{ $penulis }}</h1>
+	<h1>Author By {{ $penulis }}</h1>
 	<article>
 		@foreach($posts as $list)
 		<h2><a class="text-decoration-none" href="/read/{{ $list->slug }}">{{ $list->title }}</a></h2>
