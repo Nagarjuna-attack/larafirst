@@ -4,8 +4,8 @@
 	<h1>Read</h1>
 	<article>
 		<h2>{{ $baca->title }}</h2>
-		<p>By Afandi <a href="/kategori/{{ $baca->kategori->slug }}"><strong>{{ $baca->kategori->name }}</strong></p></a>
+		<p>By Afandi <a class="text-decoration-none" href="/kategori/{{ $baca->kategori->slug }}"><strong>{{ $baca->kategori->name }}</strong></p></a>
 		{!! $baca->body !!}
 	</article>
-	<a href="/">Beranda</a>
+	<a class="text-decoration-none" href="/">Beranda</a>
 	@endsection
