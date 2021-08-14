@@ -12,7 +12,7 @@ class PostController extends Controller
         return view('beranda',[ 
         'aktif'  => 'active',
         'title' => 'Beranda',
-        'posts' => Post::with(['user','kategori'])->latest()->get(),
+        'posts' => Post::latest()->get(),
         ]);
     }
 
