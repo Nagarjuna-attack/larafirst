@@ -13,6 +13,22 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['user','kategori'];
 
+    public function scopeFilter($posts,array $filters)
+    {
+        $posts->when(isset($filters['search']) ? $filters['search'] : false, function($posts,$search){          
+            return $posts->where('title','like','%'.$search.'%')
+                  ->orWhere('excerpt','like','%'.$search.'%');    
+        });
+
+        $posts->when(isset($filters['kategori']) ? $filters['kategori'] : false, function($posts,$kategori){          
+            return $posts->whereHas('kategori',function($posts) use ($kategori){
+                $posts->where('slug',$kategori);
+            });    
+        });
+
+
+    }
+
 
     public function kategori()
     {
