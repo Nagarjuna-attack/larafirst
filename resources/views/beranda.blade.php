@@ -29,7 +29,7 @@
 	    <p class="card-text"><small class="text-muted">Last updated {{ $posts[0]->created_at->diffForHumans() }}</small></p>
 	  </div>
 	</div>
-	<div class="container">
+	<div class="container mb-3">
 		<div class="row">
 			@foreach($posts->skip(1) as  $list)
 			<div class="col-md-4 mb-3">
@@ -54,4 +54,7 @@
 	@else
 	<p class="text-center">Belum ada artikel yang dipost</p>
 	@endif
+	<div class="d-flex justify-content-center">
+		{{ $posts->links() }}
+	</div>
 	@endsection

@@ -12,7 +12,7 @@ class PostController extends Controller
         return view('beranda',[ 
         'aktif'  => 'active',
         'title' => 'Beranda',
-        'posts' => Post::latest()->filter(request(['search','kategori']))->get(),
+        'posts' => Post::latest()->filter(request(['search','kategori']))->paginate(7)->withQueryString(),
         ]);
     }
 
