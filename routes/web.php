@@ -26,6 +26,7 @@ Route::get('/kontak', [HomeController::class,'kontak']);
 Route::get('/tentang', [HomeController::class,'tentang']);
 Route::get('/author/{penulis:name}', [UserController::class,'user']);
 Route::get('/login', [LoginController::class,'index']);
+Route::post('/login', [LoginController::class,'checklogin']);
 Route::get('/register', [RegisterController::class,'index']);
 Route::post('/register', [RegisterController::class,'save']);
 
