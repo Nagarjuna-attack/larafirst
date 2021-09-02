@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,10 +26,12 @@ Route::get('/kategori',[KategoriController::class,'index']);
 Route::get('/kontak', [HomeController::class,'kontak']);
 Route::get('/tentang', [HomeController::class,'tentang']);
 Route::get('/author/{penulis:name}', [UserController::class,'user']);
-Route::get('/login', [LoginController::class,'index']);
+Route::get('/login', [LoginController::class,'index'])->name('masuk')->middleware('guest');
 Route::post('/login', [LoginController::class,'checklogin']);
+Route::post('/logout', [LoginController::class,'logout']);
 Route::get('/register', [RegisterController::class,'index']);
 Route::post('/register', [RegisterController::class,'save']);
+Route::get('/dashboard',[DashboardController::class,'index'])->middleware('auth');
 
 Route::get('/ipku',function(){
 

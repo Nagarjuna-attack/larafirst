@@ -26,11 +26,9 @@ class RegisterController extends Controller
             'password' => 'required|max:200|min:8',
         ]);
 
-        $request->session()->flash('sukses', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">
-          <strong>Registrasi Berhasil, Silahkan Login!</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        $request->session()->flash('sukses', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert"><strong>Registrasi Berhasil, Silahkan Login!</strong><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>');
-        
+
         $dataValid['password'] = Hash::make($dataValid['password']);
         User::create($dataValid);
         return redirect('/login');

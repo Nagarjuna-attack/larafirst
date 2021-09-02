@@ -28,10 +28,10 @@
 				<input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="floatingPassword" placeholder="Password" required>
 				<label for="floatingPassword">Password</label>
 				@error('password')
-		       <div class="invalid-feedback text-center">
-			      {{ $message }}
-			   </div>
-			  @enderror
+			       <div class="invalid-feedback text-center">
+				      {{ $message }}
+				   </div>
+				@enderror
 			</div>
 		    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
 		  </form>
