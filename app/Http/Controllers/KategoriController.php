@@ -13,7 +13,6 @@ class KategoriController extends Controller
     {
         return view('kategoris',[
             
-            'aktif'  => 'active',
             'title' => 'Kategori',
             'kategoris' => Kategori::all()
         ]);

@@ -9,8 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {   
-        return view('beranda',[ 
-        'aktif'  => 'active',
+        return view('beranda',[
         'title' => 'Beranda',
         'posts' => Post::latest()->filter(request(['search','kategori']))->paginate(7)->withQueryString(),
         ]);

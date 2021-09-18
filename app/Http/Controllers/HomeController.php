@@ -9,7 +9,6 @@ class HomeController extends Controller
     public function kontak()
     {
         return view('kontak',[
-            'aktif'  => 'active',
             'title' => 'Kontak'
             ]);
     }
@@ -17,7 +16,6 @@ class HomeController extends Controller
     public function tentang()
     {
         return view('tentang',[
-            'aktif'  => 'active',
             'title' => 'Tentang'
         ]);
     }

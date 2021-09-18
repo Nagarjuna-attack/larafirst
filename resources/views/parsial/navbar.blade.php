@@ -7,16 +7,16 @@
 			    <div class="collapse navbar-collapse" id="navbarNav">
 			      <ul class="navbar-nav">
 			        <li class="nav-item">
-			          <a class="nav-link {{ ($title==="Beranda") ? 'active' : '' }}" aria-current="page" href="/">Beranda</a>
+			          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Beranda</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link {{ ($title==="Kategori") ? 'active' : '' }}" href="/kategori">Kategori</a>
+			          <a class="nav-link {{ Request::is('kategori') ? 'active' : '' }}" href="/kategori">Kategori</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link {{ ($title==="Kontak") ? 'active' : '' }}" href="/kontak">Kontak</a>
+			          <a class="nav-link {{ Request::is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link {{ ($title==="Tentang") ? 'active' : '' }}" href="/tentang">Tentang</a>
+			          <a class="nav-link {{ Request::is('tentang') ? 'active' : '' }}" href="/tentang">Tentang</a>
 			        </li>
 			      </ul>
 			      <ul class="navbar-nav ms-auto">
