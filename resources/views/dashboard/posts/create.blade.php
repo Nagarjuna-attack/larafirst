@@ -8,23 +8,38 @@
       	@csrf
       <div class="mb-3">
 	   <label for="title" class="form-label">Title</label>
-	   <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+	   <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Title" name="title" value="{{ old('title') }}">
+	   @error('title')
+	   <div class="invalid-feedback">
+	   	{{ $message }}
+	   </div>
+	   @enderror
 	  </div>
 	  <div class="mb-3">
 	  	<label for="slug" class="form-label">Slug</label>
-	  	<input type="text" class="form-control" id="slug" placeholder="contoh-dari-slug" name="slug">
+	  	<input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="contoh-dari-slug" name="slug" value="{{ old('slug') }}">
+	  	@error('slug')
+	   <div class="invalid-feedback">
+	   	{{ $message }}
+	   </div>
+	   @enderror
 	  </div>
 	  <div class="mb-3">
 	  	<label for="kategori" class="form-label">Kategori</label>
-	  	<select class="form-select" id="kategori" name="id_kategori">
+	  	<select class="form-select" id="kategori" name="kategori_id">
 	  	  @foreach($kategoris as $ktg)
-		  <option value="{{ $ktg->id }}">{{ $ktg->name }}</option>
+	  	  	@if(old('id_kategori')== $ktg->id)
+		  	<option value="{{ $ktg->id }}" selected>{{ $ktg->name }}</option>
+		  	@else
+		  	<option value="{{ $ktg->id }}">{{ $ktg->name }}</option>
+		  	@endif
 		  @endforeach
 		</select>
 	  </div>
 	  <div class="mb-3">
 	   <label for="Body" class="form-label">Body</label>
-	   <input id="body" type="hidden" name="body">
+	   @error('body')<p class="text-danger">{{ $message }}</p>@enderror
+	   <input id="body" type="hidden" name="body" value="{{ old('body') }}">
   	   <trix-editor input="body"></trix-editor>
 	  </div>
 	  <button type="submit" class="btn btn-primary" name="submit">Create Post</button>	

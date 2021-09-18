@@ -5,6 +5,9 @@
       </div>
       <div class="table-responsive col-lg-8">
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create New Post</a>
+        @if(session()->has('succes'))
+        {!! session('succes') !!}
+        @endif
         <table class="table table-striped table-sm">
           <thead>
             <tr>
