@@ -15,7 +15,15 @@
 	  	<input type="text" class="form-control" id="slug" placeholder="contoh-dari-slug" name="slug">
 	  </div>
 	  <div class="mb-3">
-	   <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+	  	<label for="kategori" class="form-label">Kategori</label>
+	  	<select class="form-select" id="kategori" name="id_kategori">
+	  	  @foreach($kategoris as $ktg)
+		  <option value="{{ $ktg->id }}">{{ $ktg->name }}</option>
+		  @endforeach
+		</select>
+	  </div>
+	  <div class="mb-3">
+	   <label for="Body" class="form-label">Body</label>
 	   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-primary" name="submit">Create Post</button>	
