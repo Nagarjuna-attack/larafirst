@@ -7,6 +7,10 @@
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create New Post</a>
         @if(session()->has('succes'))
         {!! session('succes') !!}
+        @elseif(session()->has('delete'))
+        {!! session('delete') !!}
+        @elseif(session()->has('update'))
+        {!! session('update') !!}
         @endif
         <table class="table table-striped table-sm">
           <thead>
@@ -25,8 +29,8 @@
               <td>{{ $ps->kategori->name }}</td>
               <td>
                 <a href="/dashboard/posts/{{ $ps->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
-                <a href="/dashboard/posts/{{ $ps->id }}" class="badge bg-warning"><span data-feather="edit"></span></a>
-                <form action="/dashboard/posts" method="post" class="d-inline">
+                <a href="/dashboard/posts/{{ $ps->slug }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
+                <form action="/dashboard/posts/{{ $ps->slug }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
                   <button class="badge bg-danger border-0" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><span data-feather="x-circle"></span></button>

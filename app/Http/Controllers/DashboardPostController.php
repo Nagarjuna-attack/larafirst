@@ -54,7 +54,7 @@ class DashboardPostController extends Controller
         $validateData['excerpt'] = Str::limit(strip_tags($request->body),25,'...');
 
         Post::create($validateData);
-        return redirect('/dashboard/posts')->with('succes','<div class="alert text-center alert-success role="alert">Post Berhasil Ditambahkan..!</div>');
+        return redirect('/dashboard/posts')->with('succes','<div class="alert text-center alert-success" role="alert">Post Berhasil Ditambahkan..!</div>');
     }
 
     /**
@@ -78,7 +78,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit',[
+            'postedit' => $post,
+            'kategoris' => Kategori::all(),
+        ]);
     }
 
     /**
@@ -90,7 +93,31 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        if($request->title==$post->title && $request->slug==$post->slug && $request->kategori_id==$post->kategori_id && $request->slug==$post->slug){
+
+            return redirect('/dashboard/posts')->with('update','<div class="alert text-center alert-primary" role="alert">Tidak Ada Perubahan Pada Data</div>');
+        }
+
+
+        $aturan = [
+            'title' => 'required|max:255',
+            'kategori_id' => 'required',
+            'body' => 'required',
+        ];
+
+        if($request->slug!=$post->slug)
+        {
+            $aturan['slug'] = 'required|unique:posts';
+        }
+
+        $validateData = $request->validate($aturan);
+        $validateData['user_id'] = auth()->user()->id;
+        $validateData['excerpt'] = Str::limit(strip_tags($request->body),25,'...');
+
+        Post::where('id',$post->id)->update($validateData);
+
+        return redirect('/dashboard/posts')->with('update','<div class="alert text-center alert-success" role="alert">Post Berhasil di Update</div>');
+        
     }
 
     /**
@@ -101,7 +128,8 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect('/dashboard/posts')->with('delete','<div class="alert text-center alert-success" role="alert">Post Berhasil Di Hapus..!</div>');
     }
 
     public function checkSlug(Request $request)
