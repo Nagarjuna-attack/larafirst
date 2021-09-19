@@ -19,10 +19,10 @@
 	  	<label for="slug" class="form-label">Slug</label>
 	  	<input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="contoh-dari-slug" name="slug" value="{{ old('slug') }}">
 	  	@error('slug')
-	   <div class="invalid-feedback">
-	   	{{ $message }}
-	   </div>
-	   @enderror
+		   <div class="invalid-feedback">
+		   	{{ $message }}
+		   </div>
+		   @enderror
 	  </div>
 	  <div class="mb-3">
 	  	<label for="kategori" class="form-label">Kategori</label>
@@ -38,7 +38,12 @@
 	  </div>
 	  <div class="mb-3">
 		<label for="image" class="form-label">Image Post</label>
-		<input class="form-control" type="file" id="image" name="image">
+		<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+		@error('image')
+		   <div class="invalid-feedback">
+		   	{{ $message }}
+		   </div>
+		   @enderror
 	  </div>
 	  <div class="mb-3">
 	   <label for="Body" class="form-label">Body</label>

@@ -11,7 +11,11 @@
                   @csrf
                   <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><span data-feather="x-circle"></span> Delete</button>
                 </form>
+          @if($baca->image)
+          <img src="{{ asset('storage/'.$baca->image) }}" class="img-fluid my-4" alt="{{ $baca->name }}">
+          @else
           <img src="https://source.unsplash.com/900x300?{{ $baca->kategori->name }}" class="img-fluid my-4" alt="{{ $baca->name }}">
+          @endif
           <p class="card-text"><small class="text-muted">Last updated {{ $baca->created_at->diffForHumans() }}</small></p>
           {{ $baca->user->name }}</a> In <a class="text-decoration-none" href="/?kategori={{ $baca->kategori->slug }}"><strong>{{ $baca->kategori->name }}</strong></p></a>
           {!! $baca->body !!}

@@ -19,7 +19,7 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('dashboard.posts.index',[
-            'posts' => Post::where('user_id',auth()->user()->id)->get()
+            'posts' => Post::where('user_id',auth()->user()->id)->orderBy('id','desc')->get()
         ]);
     }
 
@@ -43,14 +43,19 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->file('image')->store('img_post');
 
         $validateData = $request->validate([
             'title' => 'required|max:255',
             'slug'  => 'required|unique:posts',
             'kategori_id' => 'required',
+            'image' => 'image|file|max:2048',
             'body' => 'required'
         ]);
+
+        if($request->file('image'))
+        {
+            $validateData['image'] = $request->file('image')->store('img_post');
+        }
 
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body),25,'...');
