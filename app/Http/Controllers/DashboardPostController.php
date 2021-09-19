@@ -43,6 +43,8 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->file('image')->store('img_post');
+
         $validateData = $request->validate([
             'title' => 'required|max:255',
             'slug'  => 'required|unique:posts',
@@ -117,7 +119,7 @@ class DashboardPostController extends Controller
         Post::where('id',$post->id)->update($validateData);
 
         return redirect('/dashboard/posts')->with('update','<div class="alert text-center alert-success" role="alert">Post Berhasil di Update</div>');
-        
+
     }
 
     /**
