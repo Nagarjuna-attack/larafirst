@@ -5,7 +5,7 @@
     </div>
     <a href="/dashboard/posts" class="btn btn-success mb-4"><span data-feather="arrow-left"></span> Kembali Ke post</a>
     <div class="col-lg-8">
-      <form method="post" action="/dashboard/posts/{{ $postedit->slug }}">
+      <form method="post" action="/dashboard/posts/{{ $postedit->slug }}" enctype="multipart/form-data">
       	@method('put')
       	@csrf
       <div class="mb-3">
@@ -39,6 +39,21 @@
 		</select>
 	  </div>
 	  <div class="mb-3">
+		<label for="image" class="form-label">Image Post</label>
+		@if($postedit->image)
+		<img src="{{ asset('storage/'.$postedit->image) }}" class="img-preview img-fluid mb-3 d-block" alt="{{ $postedit->image }}">
+		@else
+		<img class="img-preview img-fluid mb-3">
+		@endif
+		<input type="hidden" name="oldImage" value="{{ $postedit->image }}">
+		<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+		@error('image')
+		   <div class="invalid-feedback">
+		   	{{ $message }}
+		   </div>
+		   @enderror
+	  </div>
+	  <div class="mb-3">
 	   <label for="Body" class="form-label">Body</label>
 	   @error('body')<p class="text-danger">{{ $message }}</p>@enderror
 	   <input id="body" type="hidden" name="body" value="{{ old('body',$postedit->body) }}">
@@ -62,5 +77,19 @@
     	document.addEventListener('trix-file-accept', function(e){
     		e.preventDefault();
     	});
+
+    	function previewImage(){
+    		const image = document.querySelector('#image');
+    	  const imgPreview = document.querySelector('.img-preview');
+
+    	  imgPreview.style.display='block';
+
+    	  const fReader = new FileReader();
+    	  fReader.readAsDataURL(image.files[0]);
+    	  fReader.onload = function(oFREvent)
+    	  {
+    	  	imgPreview.src = oFREvent.target.result;
+    	  }
+    	}
     </script>
 @endsection
