@@ -20,5 +20,16 @@
             </a>
           </li>
         </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Administrator</span>
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="/dashboard/kategoris" class="nav-link {{ Request::is('dashboard/kategoris*') ? 'active' : '' }}">
+            <span data-feather="grid"></span>
+            Post Kategori
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
